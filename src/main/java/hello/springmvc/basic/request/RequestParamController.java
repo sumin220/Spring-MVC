@@ -1,10 +1,13 @@
 package hello.springmvc.basic.request;
 
+import hello.springmvc.basic.HelloData;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.io.IOException;
 
@@ -26,5 +29,11 @@ public class RequestParamController {
         response.getWriter().write("ok");
     }
 
+    @ResponseBody
+    @RequestMapping("/model-attrivute-v1")
+    public String modelAttributeV1(@ModelAttribute HelloData helloData) {
+        log.info("username = {}, age = {} ", helloData.getUsername(), helloData.getAge());
 
+        return "ok";
+    }
 }
